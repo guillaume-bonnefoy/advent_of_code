@@ -36,18 +36,18 @@ func main() {
 	for _, line := range lines {
 		subStrings := strings.Split(string(line), "   ")
 
-		for i, str := range subStrings {
-			value, err := strconv.Atoi(str)
-			if err != nil {
-				continue
-			}
-			if i == 0 {
-				sliceLeft = append(sliceLeft, value)
-			} else {
-				sliceRight = append(sliceRight, value)
-				numberCountRight[value]++
-			}
+		leftValue, err := strconv.Atoi(subStrings[0])
+		if err != nil {
+			continue
 		}
+		rightValue, err := strconv.Atoi(subStrings[1])
+		if err != nil {
+			continue
+		}
+
+		sliceLeft = append(sliceLeft, leftValue)
+		sliceRight = append(sliceRight, rightValue)
+		numberCountRight[rightValue]++
 	}
 
 	sort.Ints(sliceLeft)
